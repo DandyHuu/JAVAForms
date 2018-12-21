@@ -18,18 +18,20 @@ public class clsSach {
     public String nhaXB;
     public int giaTien;
     public int soLuong;
+    public String Mota;
     
     public clsSach() {
         
     }
     
-    public clsSach(String maSach, String tenSach, String tenTacGia, String nhaXB, int giaTien, int soLuong) {
+    public clsSach(String maSach, String tenSach, String tenTacGia, String nhaXB, int giaTien, int soLuong, String Mota) {
         this.maSach = maSach;
         this.tenSach = tenSach;
         this.tenTacGia = tenTacGia;
         this.nhaXB = nhaXB;
         this.giaTien = giaTien;
         this.soLuong = soLuong;
+        this.Mota = Mota;
     }
     
     public String getMaSach() {
@@ -78,5 +80,12 @@ public class clsSach {
     
     public void setSoLuong(int sl) {
         this.soLuong = sl;
+    }
+    public String getMota() {
+        return Mota;
+    }
+    
+    public void setMota(String mota) {
+        this.Mota = mota;
     }
 }

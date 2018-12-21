@@ -9,6 +9,7 @@ import CSDL.tbUsers;
 import Forms.frmMAIN;
 import Models.clsUsers;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import sun.security.provider.MD5;
 
 /**
@@ -27,15 +28,14 @@ public class frmLogin extends javax.swing.JFrame {
     public boolean checkLogin(String user , String pass){
         boolean kq = false;
         tbUsers ds = new tbUsers();
-        Vector<clsUsers> dsUser =  ds.CheckUsers(user,pass);;
-        for (clsUsers u : dsUser) {
-            if (user.equals(u.getuserName()) && pass.equals(u.getpass()) ) {
-                kq = true;
+        Vector<clsUsers> dsUser =  ds.CheckUsers(user,pass);
+
+            if (dsUser.size() > 0 ) {
+                 kq = true;
             }
             else{
                 kq=false;
             }
-        }
         return kq;
     }
     
@@ -74,6 +74,9 @@ public class frmLogin extends javax.swing.JFrame {
         txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtUsernameKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyReleased(evt);
             }
         });
 
@@ -157,9 +160,23 @@ public class frmLogin extends javax.swing.JFrame {
         
         if (!name.equals("") &&  !name.equals("")){
             boolean kq = checkLogin(name, pass);
+            
             if ( kq == true) {
                 this.dispose();
-                frmMAIN csMain = new frmMAIN();
+                tbUsers ds = new tbUsers();
+                Vector<clsUsers> dsUser =  ds.CheckUsers(name,pass);
+                   frmMAIN csMain = new frmMAIN();
+                    if (dsUser.size() == 1 ) {
+                          for (clsUsers u : dsUser) {
+                             csMain._Ma_admin = u.getid();                    
+                             csMain._Ten_dang_nhap = u.getuserName();
+                             csMain._Ten_nguoi_dung = u.getTennguoidung();
+                             csMain._Password = u.getpass();
+                             csMain._Avatar = u.getAvatar();
+                             csMain._Phone = u.getPhone();
+                             csMain._Role = u.getrole();
+                         }
+                     }
                 csMain.setVisible(true);
                
             }
@@ -171,6 +188,11 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyPressed
         // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtUsernameKeyPressed
+
+    private void txtUsernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyReleased
+        // TODO add your handling code here:
         String name = txtUsername.getText();
         if (name.equals("")) {
             lblErrorName.setText("Chưa nhập tên đăng nhập!");
@@ -178,7 +200,7 @@ public class frmLogin extends javax.swing.JFrame {
         else{
               lblErrorName.setText(null);
          }
-    }//GEN-LAST:event_txtUsernameKeyPressed
+    }//GEN-LAST:event_txtUsernameKeyReleased
 
     /**
      * @param args the command line arguments

@@ -25,14 +25,7 @@ public class tbSach {
     public static PreparedStatement ps;
     public static ResultSet rs;
     
-    public static ResultSet showTextfield(String sql) {
-        try {
-            ps = Database.KetnoiCSDL().prepareStatement(sql);
-            return ps.executeQuery();
-        } catch (Exception e) {
-            return null;
-        }
-    }
+    
     public Vector<clsSach> SelectBookId(int id) {
         Vector<clsSach> ds = new Vector<clsSach>();
         Connection cnn = Database.KetnoiCSDL();
@@ -53,6 +46,7 @@ public class tbSach {
                     sv.setGiaTien(rs.getInt("Gia_tien"));
                     sv.setNhaXB(rs.getString("Nha_xb"));
                     sv.setSoLuong(rs.getInt("So_luong"));
+                    sv.setMota(rs.getString("Mo_ta"));
                     ds.add(sv);
                 }
             } catch (SQLException ex) {
@@ -62,7 +56,7 @@ public class tbSach {
         return ds;
 
     }
-    public Vector<clsSach> SearchBook(String name, int cate_id , String author , int price) {
+    public Vector<clsSach> SearchBook(String name, int cate_id , String author , int price1, int price2) {
         Vector<clsSach> ds = new Vector<clsSach>();
         Connection cnn = Database.KetnoiCSDL();
         if (cnn!= null) {
@@ -91,12 +85,28 @@ public class tbSach {
                     sql += "AND id_Danhmuc = "+cate_id;
                 }
             }
-            if(price > 0){
+            if(price1 == 100000){
                 if (sql.equals("")) {
-                    sql = "SELECT * FROM SACH WHERE Gia_tien < "+ price;
+                    sql = "SELECT * FROM SACH WHERE Gia_tien < "+ price1;
                 }
                 else{
-                    sql += "AND Gia_tien < "+ price;
+                    sql += "AND Gia_tien < "+ price1;
+                }
+            }
+            if(price1 == 100001 && price2 == 200000){
+                if (sql.equals("")) {
+                    sql = "SELECT * FROM SACH WHERE Gia_tien BETWEEN "+ price1+" AND "+ price2;
+                }
+                else{
+                    sql += "AND Gia_tien BETWEEN "+ price1+" AND "+ price2;
+                }
+            }
+             if(price1 == 200000){
+                if (sql.equals("")) {
+                    sql = "SELECT * FROM SACH WHERE Gia_tien > "+ price1;
+                }
+                else{
+                    sql += "AND Gia_tien > "+ price1;
                 }
             }
             try {
@@ -111,6 +121,7 @@ public class tbSach {
                     sv.setGiaTien(rs.getInt("Gia_tien"));
                     sv.setNhaXB(rs.getString("Nha_xb"));
                     sv.setSoLuong(rs.getInt("So_luong"));
+                    sv.setMota(rs.getString("Mo_ta"));
                     ds.add(sv);
                 }
             } catch (SQLException ex) {
@@ -131,7 +142,7 @@ public class tbSach {
             ps.setString(4, s.getNhaXB());
             ps.setInt(5, s.getGiaTien());
             ps.setInt(6, s.getSoLuong());
-            ps.setString(7, "Yasuo 15 GG");
+            ps.setString(7, s.getMota());
             ps.execute();
             JOptionPane.showMessageDialog(null, "Đã thêm sách thành công!" );
         } catch(Exception e) {
@@ -142,13 +153,14 @@ public class tbSach {
     public boolean UpdateSach(clsSach s) {
         try {
             ps = Database.KetnoiCSDL().prepareStatement("UPDATE SACH SET  Ten_Sach = ?, Ten_Tac_gia = ?,"
-                    + "Nha_xb = ?, Gia_tien = ?, So_luong = ? where Ma_Sach = ?");
+                    + "Nha_xb = ?, Gia_tien = ?, So_luong = ?,Mo_ta = ? where Ma_Sach = ?");
             ps.setString(6, s.getMaSach());
             ps.setString(1, s.getTenSach());
             ps.setString(2, s.getTenTacGia());
             ps.setString(3, s.getNhaXB());
             ps.setInt(4, s.getGiaTien());
             ps.setInt(5, s.getSoLuong());
+            ps.setString(6, s.getMota());
             return ps.executeUpdate() >0;
         } catch (Exception e) {
             return false;
