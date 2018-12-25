@@ -19,7 +19,7 @@ public class clsSach {
     public int giaTien;
     public int soLuong;
     public String Mota;
-    
+    public int Idcate;
     public clsSach() {
         
     }
@@ -76,6 +76,14 @@ public class clsSach {
     
     public int getSoLuong() {
         return soLuong;
+    }
+    
+    public void setIdcate(int id) {
+        this.Idcate = id;
+    }
+    
+    public int getIdcate() {
+        return Idcate;
     }
     
     public void setSoLuong(int sl) {

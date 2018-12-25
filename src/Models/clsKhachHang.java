@@ -13,64 +13,69 @@ import java.sql.Date;
  */
 public class clsKhachHang {
     
-    public String maKhachHang;
-    public String password;
-    public String name;
-    public Date birth;
-    public String diaChi;
-    public String phone;
+    public String Ma_Khach_hang;
+    public String Password;
+    public String Ten_Khach_hang;
+    public Date Ngay_sinh;
+    public String Dia_chi;
+    public String Phone;
     
     public clsKhachHang() {
-        
+        Ma_Khach_hang = "";
+        Password = "";
+        Ten_Khach_hang = "";
+        Ngay_sinh = null;
+        Dia_chi = "";
+        Phone = "";
     }
     
-    public clsKhachHang(String maKH, String password, String name, Date birth, String diaChi, String phone) {
-        this.maKhachHang = maKH;
-        this.password = password;
-        this.name = name;
-        this.birth = birth;
-        this.diaChi = diaChi;
-        this.phone = phone;
+    public clsKhachHang(String Ma_Khach_hang, String Password, String Ten_Khach_hang, Date Ngay_sinh, String Dia_chi, String Phone) {
+        this.Ma_Khach_hang = Ma_Khach_hang;
+        this.Password = Password;
+        this.Ten_Khach_hang = Ten_Khach_hang;
+        this.Ngay_sinh = Ngay_sinh;
+        this.Dia_chi = Dia_chi;
+        this.Phone = Phone;
     }
     public String getMaKH() {
-        return maKhachHang;
+        return Ma_Khach_hang;
     }
-    public void setMaKH(String maKH) {
-        this.maKhachHang = maKH;
+    public void setMaKH(String Ma_Khach_hang) {
+        this.Ma_Khach_hang = Ma_Khach_hang;
     }
     
     public String getPass() {
-        return password;
+        return Password;
     }
-    public void setPass(String pass) {
-        this.password = pass;
+    public void setPass(String Password) {
+        this.Password = Password;
     }
     
     public String getName() {
-        return name;
+        return Ten_Khach_hang;
     }
-    public void setName(String name1) {
-        this.name = name1;
+    public void setName(String Ten_Khach_hang) {
+        this.Ten_Khach_hang = Ten_Khach_hang;
     }
     
     public Date getBirth() {
-        return birth;
+        return Ngay_sinh;
     }
-    public void setBirth(Date birth) {
-        this.birth = birth;
+    public void setBirth(Date Ngay_sinh) {
+        this.Ngay_sinh = Ngay_sinh;
     }
     
     public String getDiaChi() {
-        return diaChi;
+        return Dia_chi;
     }
-    public void setDiaChi(String diachi) {
-        this.diaChi = diachi;
+    public void setDiaChi(String Dia_chi) {
+        this.Dia_chi = Dia_chi;
     }
     
     public String getPhone() {
-        return phone;
+        return Phone;
     }
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(String Phone) {
+        this.Phone = Phone;
     }
 }

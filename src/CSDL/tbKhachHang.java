@@ -6,8 +6,14 @@
 package CSDL;
 
 import Models.clsKhachHang;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,6 +47,58 @@ public class tbKhachHang {
         return kh;
     }
     
+    public Vector<clsKhachHang> SearchKhachhan(String tukhoa) {
+        Vector<clsKhachHang> ds = new Vector<clsKhachHang>();
+        try{
+            ps = Database.KetnoiCSDL().prepareStatement("SELECT * FROM KHACH_HANG ");
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                clsKhachHang kh = new clsKhachHang();
+                kh.setMaKH(rs.getString("Ma_Khach_hang"));
+                kh.setPass(rs.getString("Password"));
+                kh.setBirth(rs.getDate("Ngay_sinh"));
+                kh.setName(rs.getString("Ten_Khach_hang"));
+                kh.setDiaChi(rs.getString("Dia_chi"));
+                kh.setPhone(rs.getString("Phone"));
+                ds.add(kh);
+            }
+        }
+        catch(Exception e) {
+            return ds = null;
+        }
+        return ds;
+    }
+    
+    
+    public Vector<clsKhachHang> SearchKhachhang(String tukhoa) {
+        Vector<clsKhachHang> ds = new Vector<>();
+        Connection cnn = Database.KetnoiCSDL();
+        if (cnn != null) {
+            String sql = "SELECT * FROM KHACH_HANG WHERE Ten_Khach_hang LIKE '%"+tukhoa+"%'";
+            Statement stm;
+            try {
+                stm = cnn.createStatement();
+                ResultSet re = stm.executeQuery(sql);
+                
+                while (re.next()) {                    
+                    clsKhachHang kh = new clsKhachHang();
+                    kh.setMaKH(re.getString("Ma_Khach_hang"));
+                    kh.setName(re.getString("Ten_Khach_hang"));
+                    kh.setPass(re.getString("Password"));
+                    kh.setPhone(re.getString("Phone"));
+                     kh.setBirth(re.getDate("Ngay_sinh"));
+                    kh.setDiaChi(re.getString("Dia_chi"));
+                    
+                    ds.add(kh);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(tbKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        return ds;
+
+    }
     
     public static ResultSet showTextfield(String sql) {
         try {

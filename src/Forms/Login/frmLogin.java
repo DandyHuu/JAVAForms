@@ -158,7 +158,7 @@ public class frmLogin extends javax.swing.JFrame {
             lblErrorPass.setText("Chưa nhập mật khẩu!");
         }
         
-        if (!name.equals("") &&  !name.equals("")){
+        if (!name.equals("") &&  !pass.equals("")){
             boolean kq = checkLogin(name, pass);
             
             if ( kq == true) {

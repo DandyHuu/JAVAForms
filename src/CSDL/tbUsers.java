@@ -104,7 +104,7 @@ public class tbUsers {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(tbUsers.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Lỗi !!!");
+                JOptionPane.showMessageDialog(null, "Lỗi đăng nhập!!!");
             }
             
         }
