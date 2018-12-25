@@ -12,7 +12,7 @@ import java.sql.Date;
  * @author Gaara
  */
 public class clsSach {
-    public String maSach;
+    public int maSach;
     public String tenSach;
     public String tenTacGia;
     public String nhaXB;
@@ -20,25 +20,27 @@ public class clsSach {
     public int soLuong;
     public String Mota;
     public int Idcate;
+    
     public clsSach() {
         
     }
     
-    public clsSach(String maSach, String tenSach, String tenTacGia, String nhaXB, int giaTien, int soLuong, String Mota) {
+    public clsSach(int maSach, String tenSach,int Idcate, String tenTacGia, String nhaXB, int giaTien, int soLuong, String Mota) {
         this.maSach = maSach;
         this.tenSach = tenSach;
         this.tenTacGia = tenTacGia;
         this.nhaXB = nhaXB;
         this.giaTien = giaTien;
         this.soLuong = soLuong;
+         this.Idcate = Idcate;
         this.Mota = Mota;
     }
     
-    public String getMaSach() {
+    public int getMaSach() {
         return maSach;
     }
     
-    public void setMaSach(String ms) {
+    public void setMaSach(int ms) {
         this.maSach = ms;
     }
     

@@ -12,7 +12,7 @@ import java.sql.Date;
  * @author Gaara
  */
 public class clsPhieuMuon {
-    public String maMuon;
+    public int maMuon;
     public String maKhach;
     public String maSach;
     public Date ngayMuon;
@@ -22,7 +22,7 @@ public class clsPhieuMuon {
         
     }
     
-    public clsPhieuMuon(String maMuon, String maKhach, String maSach, Date ngayMuon, Date hanTra) {
+    public clsPhieuMuon(int maMuon, String maKhach, String maSach, Date ngayMuon, Date hanTra) {
         this.maMuon = maMuon;
         this.maKhach = maKhach;
         this.maSach = maSach;
@@ -30,10 +30,10 @@ public class clsPhieuMuon {
         this.hanTra = hanTra;
     }
     
-    public String getMaMuon() {
+    public int getMaMuon() {
         return maMuon;
     }
-    public void setMaMuon(String mm) {
+    public void setMaMuon(int mm) {
         this.maMuon = mm;
     }
     

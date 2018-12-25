@@ -40,13 +40,13 @@ public class tbSach {
                 while(rs.next())//duyệt từng bản ghi kết quả select
                 {
                     clsSach sv = new clsSach();
-                    sv.setMaSach(rs.getString("Ma_Sach"));
+                    sv.setMaSach(rs.getInt("Ma_Sach"));
                     sv.setTenSach(rs.getString("Ten_Sach"));
                     sv.setTenTacGia(rs.getString("Ten_Tac_gia"));
                     sv.setGiaTien(rs.getInt("Gia_tien"));
                     sv.setNhaXB(rs.getString("Nha_xb"));
                     sv.setSoLuong(rs.getInt("So_luong"));
-                    sv.setMota(rs.getString("Mo_ta"));
+                    sv.setMota(rs.getString("Name"));
                      sv.setIdcate(rs.getInt("id_cate"));
                     ds.add(sv);
                 }
@@ -80,19 +80,19 @@ public class tbSach {
             }
             if(cate_id > 0){
                 if (sql.equals("")) {
-                    sql = "SELECT * FROM SACH WHERE id_Danhmuc = "+cate_id;
+                    sql = "SELECT * FROM SACH WHERE id_cate = "+cate_id;
                 }
                 else{
-                    sql += "AND id_Danhmuc = "+cate_id;
+                    sql += "AND id_cate = "+cate_id;
                 }
             }
-            if (price1>0) {
-                if(price1 == 100000){
+            if (price2>0) {
+                if(price2 == 100000){
                     if (sql.equals("")) {
-                        sql = "SELECT * FROM SACH WHERE Gia_tien < "+ price1;
+                        sql = "SELECT * FROM SACH WHERE Gia_tien < "+ price2;
                     }
                     else{
-                        sql += "AND Gia_tien < "+ price1;
+                        sql += "AND Gia_tien < "+ price2;
                     }
                 }
                 if(price1 == 100001 && price2 == 200000){
@@ -103,12 +103,12 @@ public class tbSach {
                         sql += "AND Gia_tien BETWEEN "+ price1+" AND "+ price2;
                     }
                 }
-                 if(price1 == 200000){
+                 if(price2 > 200000){
                     if (sql.equals("")) {
-                        sql = "SELECT * FROM SACH WHERE Gia_tien > "+ price1;
+                        sql = "SELECT * FROM SACH WHERE Gia_tien > "+ price2;
                     }
                     else{
-                        sql += "AND Gia_tien > "+ price1;
+                        sql += "AND Gia_tien > "+ price2;
                     }
                 }
             }
@@ -118,13 +118,13 @@ public class tbSach {
                 while(rs.next())//duyệt từng bản ghi kết quả select
                 {
                     clsSach sv = new clsSach();
-                    sv.setMaSach(rs.getString("Ma_Sach"));
+                    sv.setMaSach(rs.getInt("Ma_Sach"));
                     sv.setTenSach(rs.getString("Ten_Sach"));
                     sv.setTenTacGia(rs.getString("Ten_Tac_gia"));
                     sv.setGiaTien(rs.getInt("Gia_tien"));
                     sv.setNhaXB(rs.getString("Nha_xb"));
                     sv.setSoLuong(rs.getInt("So_luong"));
-                    sv.setMota(rs.getString("Mo_ta"));
+                    sv.setMota(rs.getString("Name"));
                      sv.setIdcate(rs.getInt("id_cate"));
                     ds.add(sv);
                 }
@@ -140,7 +140,7 @@ public class tbSach {
         String sql = "insert into SACH values(?,?,?,?,?,?,?,?)";
         try {
             ps = Database.KetnoiCSDL().prepareStatement(sql);
-            ps.setString(1, s.getMaSach());
+            ps.setInt(1, s.getMaSach());
             ps.setString(2, s.getTenSach());
             ps.setString(3, s.getTenTacGia());
             ps.setString(4, s.getNhaXB());
@@ -158,8 +158,8 @@ public class tbSach {
     public boolean UpdateSach(clsSach s) {
         try {
             ps = Database.KetnoiCSDL().prepareStatement("UPDATE SACH SET  Ten_Sach = ?, Ten_Tac_gia = ?,"
-                    + " Nha_xb = ?, Gia_tien = ?, So_luong = ?,Mo_ta = ? , id_cate where Ma_Sach = ?");
-            ps.setString(8, s.getMaSach());
+                    + " Nha_xb = ?, Gia_tien = ?, So_luong = ?,Name = ? , id_cate = ? where Ma_Sach = ?");
+            ps.setInt(8, s.getMaSach());
             ps.setString(1, s.getTenSach());
             ps.setString(2, s.getTenTacGia());
             ps.setString(3, s.getNhaXB());

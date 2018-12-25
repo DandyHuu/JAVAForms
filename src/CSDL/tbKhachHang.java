@@ -6,6 +6,7 @@
 package CSDL;
 
 import Models.clsKhachHang;
+import Models.clsSach;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,21 +25,22 @@ public class tbKhachHang {
     public static PreparedStatement ps;
     public static ResultSet rs;
     
-    public clsKhachHang dangNhap(String taiKhoan, String pass) {
+    public clsKhachHang dangNhap(String taiKhoan) {
         clsKhachHang kh = null;
         try{
-            ps = Database.KetnoiCSDL().prepareStatement("SELECT * FROM KHACH_HANG where Ma_Khach_hang = ? and Password=?");
+            ps = Database.KetnoiCSDL().prepareStatement("SELECT * FROM KHACH_HANG where Ma_Khach_hang = ?");
             ps.setString(1, taiKhoan);
-            ps.setString(2, pass);
+//            ps.setString(2, pass);
             rs = ps.executeQuery();
             while(rs.next()) {
                 kh = new clsKhachHang();
-               // kh.setMaKH(rs.getString("Ma_Khach_hang"));
+                kh.setMaKH(rs.getInt("Ma_Khach_hang"));
                // kh.setPass(rs.getString("Password"));
-                kh.setBirth(rs.getDate("Ngay_sinh"));
+//                kh.setBirth(rs.getDate("Ngay_sinh"));
                 kh.setName(rs.getString("Ten_Khach_hang"));
                 kh.setDiaChi(rs.getString("Dia_chi"));
-                kh.setPhone(rs.getString("Phone"));
+                kh.setPhone(rs.getInt("Phone"));
+                kh.setTienCoc(rs.getInt("Tien_dat_coc"));
             }
         }
         catch(Exception e) {
@@ -46,59 +48,60 @@ public class tbKhachHang {
         }
         return kh;
     }
-    
-    public Vector<clsKhachHang> SearchKhachhan(String tukhoa) {
-        Vector<clsKhachHang> ds = new Vector<clsKhachHang>();
-        try{
-            ps = Database.KetnoiCSDL().prepareStatement("SELECT * FROM KHACH_HANG ");
-            rs = ps.executeQuery();
-            while(rs.next()) {
-                clsKhachHang kh = new clsKhachHang();
-                kh.setMaKH(rs.getString("Ma_Khach_hang"));
-                kh.setPass(rs.getString("Password"));
-                kh.setBirth(rs.getDate("Ngay_sinh"));
-                kh.setName(rs.getString("Ten_Khach_hang"));
-                kh.setDiaChi(rs.getString("Dia_chi"));
-                kh.setPhone(rs.getString("Phone"));
-                ds.add(kh);
-            }
-        }
-        catch(Exception e) {
-            return ds = null;
-        }
-        return ds;
-    }
-    
-    
-    public Vector<clsKhachHang> SearchKhachhang(String tukhoa) {
-        Vector<clsKhachHang> ds = new Vector<>();
+    public Vector<clsKhachHang> SelectBookId(int id) {
+        Vector<clsKhachHang> k = new Vector<clsKhachHang>();
         Connection cnn = Database.KetnoiCSDL();
-        if (cnn != null) {
-            String sql = "SELECT * FROM KHACH_HANG WHERE Ten_Khach_hang LIKE '%"+tukhoa+"%'";
-            Statement stm;
+        if (cnn!= null) {
+            String sql = "SELECT * FROM KHACH_HANG";
+            if(id > 0){
+                sql = "SELECT * FROM SACH WHERE Ma_Khach_hang = "+id;
+            }
             try {
-                stm = cnn.createStatement();
-                ResultSet re = stm.executeQuery(sql);
-                
-                while (re.next()) {                    
-                    clsKhachHang kh = new clsKhachHang();
-                    kh.setMaKH(re.getString("Ma_Khach_hang"));
-                    kh.setName(re.getString("Ten_Khach_hang"));
-                    kh.setPass(re.getString("Password"));
-                    kh.setPhone(re.getString("Phone"));
-                     kh.setBirth(re.getDate("Ngay_sinh"));
-                    kh.setDiaChi(re.getString("Dia_chi"));
-                    
-                    ds.add(kh);
+                Statement stm = cnn.createStatement();
+                ResultSet rs = stm.executeQuery(sql);
+                while(rs.next())//duyệt từng bản ghi kết quả select
+                {
+                    clsKhachHang sv = new clsKhachHang();
+                    sv.setMaKH(rs.getInt("Ma_Khach_hang"));
+                    sv.setName(rs.getString("Ten_Khach_hang"));
+                    sv.setDiaChi(rs.getString("Dia_Chi"));
+                    sv.setPhone(rs.getInt("Phone"));
+                    sv.setTienCoc(rs.getInt("Tien_dat_coc"));
+                    k.add(sv);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(tbKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(tbSach.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
         }
-        return ds;
+        return k;
 
     }
+    public Vector<clsKhachHang> SearchKhachhang(String name) {
+        Vector<clsKhachHang> k = new Vector<clsKhachHang>();
+        Connection cnn = Database.KetnoiCSDL();
+        if (cnn!= null) {
+            String sql = "SELECT * FROM SACH WHERE Ten_Khach_hang = '%"+name+"%'";
+            try {
+                Statement stm = cnn.createStatement();
+                ResultSet rs = stm.executeQuery(sql);
+                while(rs.next())//duyệt từng bản ghi kết quả select
+                {
+                    clsKhachHang sv = new clsKhachHang();
+                    sv.setMaKH(rs.getInt("Ma_Khach_hang"));
+                    sv.setName(rs.getString("Ten_Khach_hang"));
+                    sv.setDiaChi(rs.getString("Dia_Chi"));
+                    sv.setPhone(rs.getInt("Phone"));
+                    sv.setTienCoc(rs.getInt("Tien_dat_coc"));
+                    k.add(sv);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(tbSach.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return k;
+
+    }
+    
     
     public static ResultSet showTextfield(String sql) {
         try {
@@ -110,16 +113,14 @@ public class tbKhachHang {
     }
     
      public static void InsertKhachHang(clsKhachHang kh) {
-        String sql = "insert into KHACH_HANG values(?,?,?,?,?,?,?)";
+        String sql = "insert into KHACH_HANG values(?,?,?,?,?)";
         try {
             ps = Database.KetnoiCSDL().prepareStatement(sql);
-            ps.setString(1, kh.getMaKH());
-            ps.setString(2, kh.getPass());
-            ps.setString(3, kh.getName());
-            ps.setDate(4, kh.getBirth());
-            ps.setString(5, kh.getDiaChi());
-            ps.setString(6, kh.getPhone());
-            ps.setString(7, "Chỗ này thì mô tả j thì mô tả nha mày");
+            ps.setInt(1, kh.getMaKH());
+            ps.setString(2, kh.getName());
+            ps.setString(3, kh.getDiaChi());
+            ps.setInt(4, kh.getPhone());
+            ps.setInt(5, kh.getTienCoc());
             ps.execute();
             JOptionPane.showMessageDialog(null, "Đã thêm khách hàng thành công!");
         } catch(Exception e) {
@@ -129,24 +130,25 @@ public class tbKhachHang {
     
     public boolean UpdateKhachHang(clsKhachHang kh) {
         try {
-            ps = Database.KetnoiCSDL().prepareStatement("UPDATE KHACH_HANG SET Password = ?, Ten_Khach_hang = ?,"
-                    + "Ngay_sinh = ?, Dia_chi = ?, Phone = ? where Ma_Khach_hang = ?");
-            ps.setString(6, kh.getMaKH());
-            ps.setString(1, kh.getPass());
-            ps.setString(2, kh.getName());
-            ps.setDate(3, kh.getBirth());
-            ps.setString(4, kh.getDiaChi());
-            ps.setString(5, kh.getPhone());
+            ps = Database.KetnoiCSDL().prepareStatement("UPDATE KHACH_HANG SET Ten_Khach_hang = ?,"
+                    + "Dia_chi = ?, Phone = ?, Tien_dat_coc = ? where Ma_Khach_hang = ?");
+            ps.setInt(5, kh.getMaKH());
+//            ps.setString(1, kh.getPass());
+            ps.setString(1, kh.getName());
+//            ps.setDate(3, kh.getBirth());
+            ps.setString(2, kh.getDiaChi());
+            ps.setInt(3, kh.getPhone());
+            ps.setInt(4, kh.getTienCoc());
             return ps.executeUpdate() >0;
         } catch (Exception e) {
             return false;
         }
     }
     
-    public boolean DeleteKhachHang(String maKH) {
+    public boolean DeleteKhachHang(int maKH) {
         try {
             ps = Database.KetnoiCSDL().prepareStatement("DELETE FROM KHACH_HANG WHERE Ma_Khach_hang = ?");
-            ps.setString(1, maKH);
+            ps.setInt(1, maKH);
             return ps.executeUpdate() >0;
         } catch(Exception e) {
             return false;

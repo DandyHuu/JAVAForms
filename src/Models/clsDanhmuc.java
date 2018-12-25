@@ -11,27 +11,27 @@ package Models;
  */
 public class clsDanhmuc {
     int id;
-    String Ten_danh_muc;
+    String Ten_Danh_Muc;
     public clsDanhmuc(){
         id = 0;
-        Ten_danh_muc = "";
+        Ten_Danh_Muc = "";
     }
-    public clsDanhmuc(int id , String Ten_danh_muc){
+    public clsDanhmuc(int id , String Ten_Danh_Muc){
         this.id = id;
-        this.Ten_danh_muc = Ten_danh_muc;
+        this.Ten_Danh_Muc = Ten_Danh_Muc;
     }
     
     public int getID(){
         return id;
     }
     public String getTendanhmuc(){
-        return Ten_danh_muc;
+        return Ten_Danh_Muc;
     }
     
     public void setID(int id){
         this.id = id;
     }
-    public void setDanhmuc(String Ten_danh_muc){
-        this.Ten_danh_muc = Ten_danh_muc;
+    public void setDanhmuc(String Ten_Danh_Muc){
+        this.Ten_Danh_Muc = Ten_Danh_Muc;
     }
 }

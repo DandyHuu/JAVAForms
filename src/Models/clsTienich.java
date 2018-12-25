@@ -36,32 +36,16 @@ import net.proteanit.sql.DbUtils;
  * @author Tran Manh Truong
  */
 public class clsTienich {
-    public static void ComboBox(JComboBox cbb, int i)
+    public static void ComboBoxSach(JComboBox cbb, int i)
     {
-       
-        cbb.addItem("Chon muc");
+       tbDanhmuc dm = new tbDanhmuc();
+       Vector<clsDanhmuc> ds = dm.Layds_Cate();
+        
         //tạo mảng chứa
-       Vector<clsDanhmuc> ds = new Vector<clsDanhmuc>();
-        Connection cnn = Database.KetnoiCSDL();
-        if (cnn!=null) {
-            String sql = "SELECT * FROM tbCategories";
-           
-                
-                Statement stm;
-            try {
-                stm = cnn.createStatement();
-                ResultSet rs = stm.executeQuery(sql);
-                while (rs.next()) {
-                    String name = rs.getString("Ten_danh_muc");
-                    cbb.addItem(name);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(tbDanhmuc.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Lỗi kết nối!!");
-            }
-            
-        }
+        DefaultComboBoxModel cdm = new DefaultComboBoxModel(ds);
         //chèn các lớp học vào cbbLophoc
+        cbb.setModel(cdm);
+        cdm.insertElementAt("Chọn danh mục", 0);
         cbb.setSelectedIndex(i);
     }
     

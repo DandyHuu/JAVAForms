@@ -47,7 +47,7 @@ public class tbNhaPH {
                 while(rs.next())//duyệt từng bản ghi kết quả select
                 {
                     clsNhaXb sv = new clsNhaXb();
-                    sv.setMaNXB(rs.getString("Ma_NXB"));
+                    sv.setMaNXB(rs.getInt("Ma_NXB"));
                     sv.setTenNXB(rs.getString("Ten_NXB"));
                     sv.setDiachi(rs.getString("Dia_Chi"));
                     sv.setEmail(rs.getString("Email"));
@@ -66,7 +66,7 @@ public class tbNhaPH {
         String sql = "insert into NHA_PH values(?,?,?,?,?,?)";
         try {
             ps = Database.KetnoiCSDL().prepareStatement(sql);
-            ps.setString(1, ph.getMaNXB());
+            ps.setInt(1, ph.getMaNXB());
             ps.setString(2, ph.getTenNXB());
             ps.setString(3, ph.getDiachi());
             ps.setString(4, ph.getEmail());
@@ -83,7 +83,7 @@ public class tbNhaPH {
         try {
             ps = Database.KetnoiCSDL().prepareStatement("UPDATE NHA_PH SET  Ten_NXB = ?, Dia_Chi = ?,"
                     + "Email = ?, Ghi_Chu = ? where Ma_NXB = ?");
-            ps.setString(6, ph.getMaNXB());
+            ps.setInt(6, ph.getMaNXB());
             ps.setString(1, ph.getTenNXB());
             ps.setString(2, ph.getDiachi());
             ps.setString(3, ph.getEmail());

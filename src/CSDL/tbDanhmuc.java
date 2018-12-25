@@ -24,10 +24,10 @@ public class tbDanhmuc {
     public static PreparedStatement ps;
     public static ResultSet rs;
     public Vector<clsDanhmuc> Layds_Cate(){
-        Vector<clsDanhmuc> ds = new Vector<clsDanhmuc>();
+        Vector<clsDanhmuc> ds = new Vector<>();
         Connection cnn = Database.KetnoiCSDL();
         if (cnn!=null) {
-            String sql = "SELECT * FROM tbCategories";
+            String sql = "SELECT * FROM danh_muc";
            
                 
                 Statement stm;
@@ -37,7 +37,7 @@ public class tbDanhmuc {
                 while (rs.next()) {
                     clsDanhmuc dm = new clsDanhmuc();
                     dm.setID(rs.getInt("id"));
-                    dm.setDanhmuc(rs.getString("Ten_danh_muc"));
+                    dm.setDanhmuc(rs.getString("Ten_Danh__Muc"));
                     
                     ds.add(dm);
                 }
@@ -54,7 +54,7 @@ public class tbDanhmuc {
         Vector<clsDanhmuc> ds = new Vector<clsDanhmuc>();
         Connection cnn = Database.KetnoiCSDL();
         if (cnn!=null) {
-            String sql = "SELECT * FROM tbCategories WHERE id = "+id;
+            String sql = "SELECT * FROM danh_muc WHERE id = "+id;
            
                 
                 Statement stm;
@@ -64,7 +64,7 @@ public class tbDanhmuc {
                 while (rs.next()) {
                     clsDanhmuc dm = new clsDanhmuc();
                     dm.setID(rs.getInt("id"));
-                    dm.setDanhmuc(rs.getString("Ten_danh_muc"));
+                    dm.setDanhmuc(rs.getString("Ten_Danh__Muc"));
                     
                     ds.add(dm);
                 }
@@ -77,7 +77,7 @@ public class tbDanhmuc {
         return ds;
     }
       public static void InsertCate(clsDanhmuc d) {
-        String sql = "insert into tbCategories values(?,?)";
+        String sql = "insert into danh_muc values(?,?)";
         try {
             ps = Database.KetnoiCSDL().prepareStatement(sql);
             ps.setInt(1, d.getID());
@@ -92,7 +92,7 @@ public class tbDanhmuc {
     
     public boolean UpdateCate(clsDanhmuc d) {
         try {
-            ps = Database.KetnoiCSDL().prepareStatement("UPDATE tbCategories SET  Ten_danh_muc = ? where id = ?");
+            ps = Database.KetnoiCSDL().prepareStatement("UPDATE danh_muc SET  Ten_Danh__Muc = ? where id = ?");
             ps.setInt(2, d.getID());
             ps.setString(1, d.getTendanhmuc());
            
@@ -105,7 +105,7 @@ public class tbDanhmuc {
     
     public boolean DeleteCate(int ms) {
         try {
-            ps = Database.KetnoiCSDL().prepareStatement("DELETE FROM tbCategories WHERE id = ?");
+            ps = Database.KetnoiCSDL().prepareStatement("DELETE FROM danh_muc WHERE id = ?");
             ps.setInt(1, ms);
             return ps.executeUpdate() >0;
         } catch(Exception e) {

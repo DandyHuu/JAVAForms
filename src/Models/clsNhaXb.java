@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class clsNhaXb {
     
-    private String maNXB;
+    private int maNXB;
     private String tenNXB;
     private String DiaChi;
     private String Email;
@@ -25,7 +25,7 @@ public class clsNhaXb {
         
     }
     
-    public clsNhaXb(String maNXB, String tenNXB, String DiaChi, String Email, String Ghichu,String Logo) {
+    public clsNhaXb(int maNXB, String tenNXB, String DiaChi, String Email, String Ghichu,String Logo) {
         this.maNXB = maNXB;
         this.tenNXB = tenNXB;
         this.DiaChi = DiaChi;
@@ -34,10 +34,10 @@ public class clsNhaXb {
         this.Logo = Logo;
     }
     
-    public String getMaNXB() {
+    public int getMaNXB() {
         return maNXB;
     }
-    public void setMaNXB(String m) {
+    public void setMaNXB(int m) {
         this.maNXB = m;
     }
     

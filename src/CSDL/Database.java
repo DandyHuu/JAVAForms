@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class Database {
     static String user = "root";
     static String pass = "";
-    static String url = "jdbc:mysql://localhost:3306/csdlqltv?useUnicode=true&characterEncoding=utf8";
+    static String url = "jdbc:mysql://localhost:3306/csdlbigless?useUnicode=true&characterEncoding=utf8";
     
     public static Connection KetnoiCSDL(){
         Connection cnn = null;

@@ -31,7 +31,7 @@ public class tbPhieuMuon {
         String sql = "insert into PHIEU_MUON values(?,?,?,?,?,?,?,?)";
         try {
             ps = Database.KetnoiCSDL().prepareStatement(sql);
-            ps.setString(1, p.getMaMuon());
+            ps.setInt(1, p.getMaMuon());
             ps.setString(2, p.getMaKhach());
             ps.setString(3, p.getSach());
             ps.setDate(4, p.getNgayMuon());
@@ -48,7 +48,7 @@ public class tbPhieuMuon {
         try {
             ps = Database.KetnoiCSDL().prepareStatement("UPDATE PHIEU_MUON SET  Ma_Khach_hang = ?, Ma_Sach = ?,"
                     + "Ngay_muon = ?, Han_tra = ? where Ma_Phieu_muon = ?");
-            ps.setString(5, p.getMaMuon());
+            ps.setInt(5, p.getMaMuon());
             ps.setString(1, p.getMaKhach());
             ps.setString(2, p.getSach());
             ps.setDate(3, p.getNgayMuon());
