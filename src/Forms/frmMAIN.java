@@ -8,18 +8,22 @@ package Forms;
 import CSDL.tbDanhmuc;
 import CSDL.tbKhachHang;
 import CSDL.tbNhaPH;
+import CSDL.tbPhieuMuon;
 import CSDL.tbSach;
 import CSDL.tbUsers;
 import Forms.Login.frmLogin;
 import Models.clsDanhmuc;
 import Models.clsKhachHang;
 import Models.clsNhaXb;
+import Models.clsPhieuMuon;
 import Models.clsSach;
 import Models.clsTienich;
 import Models.clsUsers;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.sql.Date;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -42,6 +46,8 @@ public class frmMAIN extends javax.swing.JFrame {
     public  String _Avatar;
     public  String _Phone;
     public  int _Role;
+    
+    public static int id_Phieumuon;
     /**
      * Creates new form frmMAIN
      */
@@ -50,7 +56,9 @@ public class frmMAIN extends javax.swing.JFrame {
         tabHethongMouseClicked(evt);
     }
     
-    
+    public void ShowtapKhachhang(){
+        tabKhachhangMouseClicked(evt);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,8 +115,6 @@ public class frmMAIN extends javax.swing.JFrame {
         rdAdmin = new javax.swing.JRadioButton();
         rdMember = new javax.swing.JRadioButton();
         btnThongtincanhan = new javax.swing.JButton();
-        btnAddUser = new javax.swing.JButton();
-        btnEditUser = new javax.swing.JButton();
         btnRemoveUser = new javax.swing.JButton();
         panelKhachhang = new javax.swing.JPanel();
         panelKhachhang1 = new javax.swing.JPanel();
@@ -201,25 +207,24 @@ public class frmMAIN extends javax.swing.JFrame {
         panelChothue = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        btnThongtinNguoithue = new javax.swing.JButton();
         btnChothuesach = new javax.swing.JButton();
         btnXoaThue = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableNguoithuesach = new javax.swing.JTable();
+        tablePhieumuon = new javax.swing.JTable();
         jLabel26 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        txtSachthue = new javax.swing.JTextField();
-        txtNguoithue = new javax.swing.JTextField();
+        txtSachthuepm = new javax.swing.JTextField();
+        txtNguoithuepm = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        txtTiendatcoc = new javax.swing.JTextField();
+        txtTiendatcocPM = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
         txtFormatNgaymuon = new javax.swing.JFormattedTextField();
         txtFormatHantra = new javax.swing.JFormattedTextField();
-        txtFormatNgaytra = new javax.swing.JFormattedTextField();
+        txtPhonepm = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         tabHethong = new javax.swing.JMenu();
         tabCongcu = new javax.swing.JMenu();
@@ -450,7 +455,6 @@ public class frmMAIN extends javax.swing.JFrame {
 
         jLabel32.setText("Mật khẩu");
 
-        txtMatkhau.setEnabled(false);
         txtMatkhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMatkhauActionPerformed(evt);
@@ -490,6 +494,13 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnRemoveUser.setText("Xóa");
+        btnRemoveUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveUserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -516,11 +527,13 @@ public class frmMAIN extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtMatkhau, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(rdAdmin)
-                                .addGap(63, 63, 63)
-                                .addComponent(rdMember))
+                        .addComponent(rdAdmin)
+                        .addGap(63, 63, 63)
+                        .addComponent(rdMember)
+                        .addContainerGap())
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRemoveUser, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnThongtincanhan, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
@@ -550,36 +563,17 @@ public class frmMAIN extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29)
                     .addComponent(txtTendangnhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThongtincanhan))
+                    .addComponent(btnRemoveUser))
                 .addGap(18, 18, 18)
+                .addComponent(btnThongtincanhan)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel27)
-                .addContainerGap(399, Short.MAX_VALUE))
+                .addContainerGap(411, Short.MAX_VALUE))
             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                    .addGap(0, 189, Short.MAX_VALUE)
+                    .addGap(0, 261, Short.MAX_VALUE)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
-
-        btnAddUser.setText("Thêm");
-        btnAddUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddUserActionPerformed(evt);
-            }
-        });
-
-        btnEditUser.setText("Sửa");
-        btnEditUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditUserActionPerformed(evt);
-            }
-        });
-
-        btnRemoveUser.setText("Xóa");
-        btnRemoveUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveUserActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelHethong1Layout = new javax.swing.GroupLayout(panelHethong1);
         panelHethong1.setLayout(panelHethong1Layout);
@@ -590,15 +584,7 @@ public class frmMAIN extends javax.swing.JFrame {
                 .addGroup(panelHethong1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHethong1Layout.createSequentialGroup()
-                        .addGroup(panelHethong1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelHethong1Layout.createSequentialGroup()
-                                .addGap(100, 100, 100)
-                                .addComponent(btnAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(300, 300, 300)
-                                .addComponent(btnEditUser, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRemoveUser, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtTukhoaUser))
+                        .addComponent(txtTukhoaUser)
                         .addGap(18, 18, 18)
                         .addComponent(btnTimkiemNguoidung)))
                 .addContainerGap())
@@ -611,12 +597,7 @@ public class frmMAIN extends javax.swing.JFrame {
                     .addComponent(txtTukhoaUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTimkiemNguoidung))
                 .addGap(18, 18, 18)
-                .addGroup(panelHethong1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddUser)
-                    .addComponent(btnEditUser)
-                    .addComponent(btnRemoveUser))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -627,9 +608,9 @@ public class frmMAIN extends javax.swing.JFrame {
             .addGap(0, 1202, Short.MAX_VALUE)
             .addGroup(panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelAdminLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 20, Short.MAX_VALUE)
                     .addComponent(panelHethong1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 20, Short.MAX_VALUE)))
         );
         panelAdminLayout.setVerticalGroup(
             panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1317,7 +1298,6 @@ public class frmMAIN extends javax.swing.JFrame {
 
         jLabel42.setText("Logo:");
 
-        jLabel43.setText("jLabel36");
         jLabel43.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1430,8 +1410,6 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
-        btnThongtinNguoithue.setText("Cập nhật thông tin");
-
         btnChothuesach.setText("Cho thuê");
         btnChothuesach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1440,16 +1418,26 @@ public class frmMAIN extends javax.swing.JFrame {
         });
 
         btnXoaThue.setText("Xóa mục");
+        btnXoaThue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaThueActionPerformed(evt);
+            }
+        });
 
-        tableNguoithuesach.setModel(new javax.swing.table.DefaultTableModel(
+        tablePhieumuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "STT", "Sách thuê", "Người thuê", "Ngày mượn", "Hạn trả", "Ngày trả", "Tiền đặt cọc"
+                "STT", "Sách thuê", "Người thuê", "Điện thoại", "Ngày mượn", "Hạn trả", "Tiền đặt cọc"
             }
         ));
-        jScrollPane2.setViewportView(tableNguoithuesach);
+        tablePhieumuon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePhieumuonMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tablePhieumuon);
 
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Danh sách cho thuê");
@@ -1460,22 +1448,17 @@ public class frmMAIN extends javax.swing.JFrame {
 
         jLabel34.setText("Ngày mượn");
 
-        jLabel35.setText("Ngày trả");
+        jLabel35.setText("Điện thoại");
 
         jLabel36.setText("Hạn trả");
 
         jLabel37.setText("Tiền đặt cọc");
 
         txtFormatNgaymuon.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        txtFormatNgaymuon.setEnabled(false);
 
         txtFormatHantra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-
-        txtFormatNgaytra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        txtFormatNgaytra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFormatNgaytraActionPerformed(evt);
-            }
-        });
+        txtFormatHantra.setEnabled(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1489,15 +1472,15 @@ public class frmMAIN extends javax.swing.JFrame {
                     .addComponent(jLabel34))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtSachthue)
-                    .addComponent(txtNguoithue)
+                    .addComponent(txtSachthuepm)
+                    .addComponent(txtNguoithuepm)
                     .addComponent(txtFormatNgaymuon, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE))
                 .addGap(100, 100, 100)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel37)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtTiendatcoc, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtTiendatcocPM, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -1507,10 +1490,8 @@ public class frmMAIN extends javax.swing.JFrame {
                                 .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                                 .addGap(45, 45, 45)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtFormatHantra, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(txtFormatNgaytra)))))
+                            .addComponent(txtFormatHantra, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                            .addComponent(txtPhonepm))))
                 .addContainerGap())
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE))
@@ -1521,22 +1502,22 @@ public class frmMAIN extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtSachthue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSachthuepm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel36)
                     .addComponent(txtFormatHantra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel31)
-                        .addComponent(txtNguoithue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNguoithuepm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel35))
-                    .addComponent(txtFormatNgaytra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPhonepm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel34)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel37)
-                        .addComponent(txtTiendatcoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTiendatcocPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtFormatNgaymuon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(43, 43, 43)
                 .addComponent(jLabel26)
@@ -1552,13 +1533,11 @@ public class frmMAIN extends javax.swing.JFrame {
         panelChothueLayout.setHorizontalGroup(
             panelChothueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelChothueLayout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addGap(239, 239, 239)
                 .addComponent(btnChothuesach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(224, 224, 224)
-                .addComponent(btnThongtinNguoithue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(224, 224, 224)
+                .addGap(378, 378, 378)
                 .addComponent(btnXoaThue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(150, 150, 150))
+                .addGap(318, 318, 318))
             .addGroup(panelChothueLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 916, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1579,7 +1558,6 @@ public class frmMAIN extends javax.swing.JFrame {
                     .addComponent(jButton4))
                 .addGap(18, 18, 18)
                 .addGroup(panelChothueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThongtinNguoithue)
                     .addComponent(btnChothuesach)
                     .addComponent(btnXoaThue))
                 .addGap(18, 18, 18)
@@ -1711,7 +1689,10 @@ public class frmMAIN extends javax.swing.JFrame {
         
         tbDanhmuc bang = new tbDanhmuc();
         Vector<clsDanhmuc> ds_danhmuc = bang.Layds_Cate();
+        
         clsTienich.ComboBoxSach(cbxDanhmuc, 0);
+        
+        
         
         if(ds.size()>0)
         {
@@ -1791,6 +1772,22 @@ public class frmMAIN extends javax.swing.JFrame {
         
     }
     
+    public void ShowPhieuMuon(){
+        tbPhieuMuon bang = new tbPhieuMuon();
+        Vector<clsPhieuMuon> ds = bang.Layds_Phieumuon();
+        if(ds.size()>0)
+        {
+            DefaultTableModel dtm = (DefaultTableModel)tablePhieumuon.getModel();
+            dtm.setRowCount(0);//xóa các dòng cũ nếu có
+            
+            ds.forEach((pm) -> {
+               
+                dtm.addRow(new Object[]{pm.getMaMuon(), pm.getTensach(),pm.getTenKhach(),pm.getPhone(),pm.getNgayMuon(),pm.getHanTra(),pm.getTien()});
+            });
+        }
+    }
+    
+    
     private void tabHethongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabHethongActionPerformed
         // TODO add your handling code here:
        
@@ -1821,12 +1818,14 @@ public class frmMAIN extends javax.swing.JFrame {
     private void tabChothueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabChothueMouseClicked
         // TODO add your handling code here:
         repainPanel(panelChothue);
+        ShowPhieuMuon();
     }//GEN-LAST:event_tabChothueMouseClicked
 
     private void tabNguoidungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabNguoidungMouseClicked
         // TODO add your handling code here:
          if (_Role == 0) {
              repainPanel(panelAdmin);
+             ShowDataNguoidung();
             }
          else{
                repainPanel(panelNguoidung);
@@ -1891,7 +1890,6 @@ public class frmMAIN extends javax.swing.JFrame {
                  this.txtTenTacGia.setText(tentacgia);
                  this.txtGia.setText(gia);
                  this.txtSoLuong.setText(soluong);
-                 
                  
                  clsTienich.ComboBoxSach(cbxDanhmuc, id_cate);
                 
@@ -1981,8 +1979,9 @@ public class frmMAIN extends javax.swing.JFrame {
          String tensach = txtTenSach.getText();
          int cate =0;
          if (cbxDanhmuc.getSelectedIndex() >0) {
-            clsDanhmuc dm = (clsDanhmuc)cbxDanhmuc.getSelectedItem();
-            cate = dm.getID();
+             String name = cbxDanhmuc.getSelectedItem().toString();
+             tbDanhmuc dm = new tbDanhmuc();
+           cate = dm.Layds_IdCate(name);
         }
          String nhaxb = txtNhaXb.getText();
          String tentacgia = txtTenTacGia.getText();
@@ -2031,8 +2030,9 @@ public class frmMAIN extends javax.swing.JFrame {
          String nhaxb = txtNhaXb.getText();
          int cate =0;
          if (cbxDanhmuc.getSelectedIndex() >0) {
-            clsDanhmuc dm = (clsDanhmuc)cbxDanhmuc.getSelectedItem();
-            cate = dm.getID();
+             String name = cbxDanhmuc.getSelectedItem().toString();
+             tbDanhmuc dm = new tbDanhmuc();
+           cate = dm.Layds_IdCate(name);
         }
          String tentacgia = txtTenTacGia.getText();
          int gia = Integer.parseInt(txtGia.getText());
@@ -2145,16 +2145,18 @@ public class frmMAIN extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableUserMouseClicked
 
-    private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddUserActionPerformed
-
-    private void btnEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditUserActionPerformed
-
     private void btnRemoveUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveUserActionPerformed
         // TODO add your handling code here:
+        int id = Integer.parseInt(txtMaNguoidung.getText());
+        
+        tbUsers u = new tbUsers();
+        boolean kq = u.DeleteUsers(id);
+        if (kq = false) {
+            JOptionPane.showMessageDialog(null, "Có lỗi khi xóa !!");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Xóa thành công 1 mục !");
+        }
     }//GEN-LAST:event_btnRemoveUserActionPerformed
 
     private void btnThongtincanhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongtincanhanActionPerformed
@@ -2180,7 +2182,10 @@ public class frmMAIN extends javax.swing.JFrame {
         File f = tien_ich.LayHinhAnh(txtDuongdan);
         
         tien_ich.ShowHinhAnh(f, labelAvatar);
+        
+        tien_ich.SaveAnh(f);
         txtDuongdan.setText(f.toString());
+
     }//GEN-LAST:event_btnuploadActionPerformed
 
     private void btnSaveUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveUpdateUserActionPerformed
@@ -2261,10 +2266,6 @@ public class frmMAIN extends javax.swing.JFrame {
         else
            JOptionPane.showMessageDialog(null, "Xóa không thành công!!");
     }//GEN-LAST:event_btnRemoveCateActionPerformed
-
-    private void txtFormatNgaytraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFormatNgaytraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFormatNgaytraActionPerformed
 
     private void btnChothuesachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChothuesachActionPerformed
         // TODO add your handling code here:
@@ -2466,6 +2467,48 @@ public class frmMAIN extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_btnRemovekhachhangActionPerformed
 
+    private void tablePhieumuonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePhieumuonMouseClicked
+        // TODO add your handling code here:
+        int row = (int)tablePhieumuon.getSelectedRow();
+        
+        if (row <0) {
+            
+        }
+        else{
+            int id = (int)tablePhieumuon.getModel().getValueAt(row, 0);
+            String tensach = (String)tablePhieumuon.getModel().getValueAt(row, 1);
+            String tenkhach = (String)tablePhieumuon.getModel().getValueAt(row, 2);
+            int phone = (int)tablePhieumuon.getModel().getValueAt(row, 3);
+            String ngaymuon = (String)tablePhieumuon.getModel().getValueAt(row, 4).toString();
+            String ngaytra = (String)tablePhieumuon.getModel().getValueAt(row, 5).toString();
+//            Date ngaymuon = Date.valueOf((String)tablePhieumuon.getModel().getValueAt(row, 4));
+//            Date ngaytra = Date.valueOf((String)tablePhieumuon.getModel().getValueAt(row, 5));
+           int tien = (int)tablePhieumuon.getModel().getValueAt(row, 6);
+           
+           id_Phieumuon = id;
+           
+           txtSachthuepm.setText(tensach);
+           txtNguoithuepm.setText(tenkhach);
+           txtPhonepm.setText(Integer.toString(phone));
+           txtFormatNgaymuon.setText(ngaymuon);
+           txtFormatHantra.setText(ngaytra);
+           txtTiendatcocPM.setText(Integer.toString(tien));
+        }
+    }//GEN-LAST:event_tablePhieumuonMouseClicked
+
+    private void btnXoaThueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaThueActionPerformed
+        // TODO add your handling code here:
+        tbPhieuMuon pm = new tbPhieuMuon();
+        boolean kq = pm.DeletePhieu(id_Phieumuon);
+        if (kq== false) {
+            JOptionPane.showMessageDialog(null, "Có lỗi khi xóa !");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Xóa thành công!");
+            ShowPhieuMuon();
+        }
+    }//GEN-LAST:event_btnXoaThueActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2505,11 +2548,9 @@ public class frmMAIN extends javax.swing.JFrame {
     private javax.swing.JButton btLogout;
     private javax.swing.JButton btLook;
     private javax.swing.JButton btnAddBook;
-    private javax.swing.JButton btnAddUser;
     private javax.swing.JButton btnChothuesach;
     private javax.swing.JButton btnEditBook;
     private javax.swing.JButton btnEditCate;
-    private javax.swing.JButton btnEditUser;
     private javax.swing.JButton btnEditkhachhang;
     private javax.swing.JButton btnNewCate;
     private javax.swing.JButton btnRePassUser;
@@ -2521,7 +2562,6 @@ public class frmMAIN extends javax.swing.JFrame {
     private javax.swing.JButton btnSavekhachhang;
     private javax.swing.JButton btnSuaNXB;
     private javax.swing.JButton btnThemNXB;
-    private javax.swing.JButton btnThongtinNguoithue;
     private javax.swing.JButton btnThongtincanhan;
     private javax.swing.JButton btnTimkiem;
     private javax.swing.JButton btnTimkiemNguoidung;
@@ -2628,7 +2668,7 @@ public class frmMAIN extends javax.swing.JFrame {
     private javax.swing.JMenu tabNhaphathanh;
     private javax.swing.JMenu tabTimkiem;
     private javax.swing.JTable tableDanhmuc;
-    private javax.swing.JTable tableNguoithuesach;
+    private javax.swing.JTable tablePhieumuon;
     private javax.swing.JTable tableSach;
     private javax.swing.JTable tableSach1;
     private javax.swing.JTable tableUser;
@@ -2640,7 +2680,6 @@ public class frmMAIN extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JFormattedTextField txtFormatHantra;
     private javax.swing.JFormattedTextField txtFormatNgaymuon;
-    private javax.swing.JFormattedTextField txtFormatNgaytra;
     private javax.swing.JTextField txtGia;
     private javax.swing.JTextField txtIdDanhmuc;
     private javax.swing.JTextField txtLook;
@@ -2649,12 +2688,13 @@ public class frmMAIN extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaSach;
     private javax.swing.JTextField txtMatkhau;
     private javax.swing.JTextField txtNameUser;
-    private javax.swing.JTextField txtNguoithue;
+    private javax.swing.JTextField txtNguoithuepm;
     private javax.swing.JTextField txtNhaXB;
     private javax.swing.JTextField txtNhaXb;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPhoneUser;
-    private javax.swing.JTextField txtSachthue;
+    private javax.swing.JTextField txtPhonepm;
+    private javax.swing.JTextField txtSachthuepm;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTT;
     private javax.swing.JTextField txtTen;
@@ -2665,7 +2705,7 @@ public class frmMAIN extends javax.swing.JFrame {
     private javax.swing.JTextField txtTendangnhap;
     private javax.swing.JTextField txtTennguoidung;
     private javax.swing.JTextField txtTienCoc;
-    private javax.swing.JTextField txtTiendatcoc;
+    private javax.swing.JTextField txtTiendatcocPM;
     private javax.swing.JTextField txtTukhoa;
     private javax.swing.JTextField txtTukhoaTensach;
     private javax.swing.JTextField txtTukhoaTentacgia;

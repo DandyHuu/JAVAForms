@@ -80,7 +80,7 @@ public class tbKhachHang {
         Vector<clsKhachHang> k = new Vector<clsKhachHang>();
         Connection cnn = Database.KetnoiCSDL();
         if (cnn!= null) {
-            String sql = "SELECT * FROM SACH WHERE Ten_Khach_hang = '%"+name+"%'";
+            String sql = "SELECT * FROM KHACH_HANG WHERE Ten_Khach_hang LIKE '%" + name + "%'";
             try {
                 Statement stm = cnn.createStatement();
                 ResultSet rs = stm.executeQuery(sql);

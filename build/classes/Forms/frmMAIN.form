@@ -476,9 +476,9 @@
                   <EmptySpace min="0" pref="1202" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
                           <Component id="panelHethong1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -507,17 +507,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel11" alignment="1" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                                          <Component id="btnAddUser" min="-2" pref="109" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="300" max="-2" attributes="0"/>
-                                          <Component id="btnEditUser" min="-2" pref="101" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="btnRemoveUser" min="-2" pref="101" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="txtTukhoaUser" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="txtTukhoaUser" max="32767" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnTimkiemNguoidung" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -535,13 +525,7 @@
                               <Component id="btnTimkiemNguoidung" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnAddUser" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnEditUser" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnRemoveUser" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="38" max="32767" attributes="0"/>
-                          <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel11" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -593,14 +577,16 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtMatkhau" pref="381" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="rdAdmin" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                                              <Component id="rdMember" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="btnThongtincanhan" alignment="0" min="-2" pref="313" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="rdAdmin" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                                      <Component id="rdMember" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="btnRemoveUser" min="-2" pref="101" max="-2" attributes="0"/>
+                                          <Component id="btnThongtincanhan" min="-2" pref="313" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -638,15 +624,17 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtTendangnhap" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnThongtincanhan" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnRemoveUser" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnThongtincanhan" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="399" max="32767" attributes="0"/>
+                              <EmptySpace pref="411" max="32767" attributes="0"/>
                           </Group>
                           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="189" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="261" max="32767" attributes="0"/>
                                   <Component id="jScrollPane7" min="-2" pref="375" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -687,9 +675,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtMatkhau">
-                      <Properties>
-                        <Property name="enabled" type="boolean" value="false"/>
-                      </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMatkhauActionPerformed"/>
                       </Events>
@@ -754,32 +739,16 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThongtincanhanActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JButton" name="btnRemoveUser">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveUserActionPerformed"/>
+                      </Events>
+                    </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="btnAddUser">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddUserActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="btnEditUser">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditUserActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="btnRemoveUser">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveUserActionPerformed"/>
-                  </Events>
-                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
@@ -1960,7 +1929,6 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel43">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jLabel36"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder>
@@ -1985,13 +1953,11 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
                       <Component id="btnChothuesach" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
-                      <Component id="btnThongtinNguoithue" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="378" max="-2" attributes="0"/>
                       <Component id="btnXoaThue" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="318" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -2017,7 +1983,6 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnThongtinNguoithue" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnChothuesach" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnXoaThue" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -2039,11 +2004,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnThongtinNguoithue">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t th&#xf4;ng tin"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="btnChothuesach">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cho thu&#xea;"/>
@@ -2056,6 +2016,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="X&#xf3;a m&#x1ee5;c"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaThueActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel4">
 
@@ -2071,8 +2034,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtSachthue" max="32767" attributes="0"/>
-                              <Component id="txtNguoithue" max="32767" attributes="0"/>
+                              <Component id="txtSachthuepm" max="32767" attributes="0"/>
+                              <Component id="txtNguoithuepm" max="32767" attributes="0"/>
                               <Component id="txtFormatNgaymuon" pref="417" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
@@ -2080,7 +2043,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txtTiendatcoc" min="-2" pref="422" max="-2" attributes="0"/>
+                                  <Component id="txtTiendatcocPM" min="-2" pref="422" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -2094,11 +2057,8 @@
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtFormatHantra" min="-2" pref="423" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                                          <Component id="txtFormatNgaytra" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="txtFormatHantra" pref="423" max="32767" attributes="0"/>
+                                      <Component id="txtPhonepm" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -2115,7 +2075,7 @@
                           <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtSachthue" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtSachthuepm" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtFormatHantra" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -2123,17 +2083,17 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtNguoithue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNguoithuepm" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel35" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="txtFormatNgaytra" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPhonepm" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtTiendatcoc" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtTiendatcocPM" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtFormatNgaymuon" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -2158,20 +2118,23 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tableNguoithuesach">
+                    <Component class="javax.swing.JTable" name="tablePhieumuon">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="7" rowCount="0">
                             <Column editable="true" title="STT" type="java.lang.Object"/>
                             <Column editable="true" title="S&#xe1;ch thu&#xea;" type="java.lang.Object"/>
                             <Column editable="true" title="Ng&#x1b0;&#x1edd;i thu&#xea;" type="java.lang.Object"/>
+                            <Column editable="true" title="&#x110;i&#x1ec7;n tho&#x1ea1;i" type="java.lang.Object"/>
                             <Column editable="true" title="Ng&#xe0;y m&#x1b0;&#x1ee3;n" type="java.lang.Object"/>
                             <Column editable="true" title="H&#x1ea1;n tr&#x1ea3;" type="java.lang.Object"/>
-                            <Column editable="true" title="Ng&#xe0;y tr&#x1ea3;" type="java.lang.Object"/>
                             <Column editable="true" title="Ti&#x1ec1;n &#x111;&#x1eb7;t c&#x1ecd;c" type="java.lang.Object"/>
                           </Table>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablePhieumuonMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -2196,13 +2159,13 @@
                     <Property name="text" type="java.lang.String" value="Ng&#xe0;y m&#x1b0;&#x1ee3;n"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtSachthue">
+                <Component class="javax.swing.JTextField" name="txtSachthuepm">
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtNguoithue">
+                <Component class="javax.swing.JTextField" name="txtNguoithuepm">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel35">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Ng&#xe0;y tr&#x1ea3;"/>
+                    <Property name="text" type="java.lang.String" value="&#x110;i&#x1ec7;n tho&#x1ea1;i"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel36">
@@ -2210,7 +2173,7 @@
                     <Property name="text" type="java.lang.String" value="H&#x1ea1;n tr&#x1ea3;"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtTiendatcoc">
+                <Component class="javax.swing.JTextField" name="txtTiendatcocPM">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel37">
                   <Properties>
@@ -2222,6 +2185,7 @@
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                       <Format subtype="1" type="1"/>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JFormattedTextField" name="txtFormatHantra">
@@ -2229,17 +2193,10 @@
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                       <Format subtype="1" type="1"/>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="txtFormatNgaytra">
-                  <Properties>
-                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-                      <Format subtype="1" type="1"/>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFormatNgaytraActionPerformed"/>
-                  </Events>
+                <Component class="javax.swing.JTextField" name="txtPhonepm">
                 </Component>
               </SubComponents>
             </Container>

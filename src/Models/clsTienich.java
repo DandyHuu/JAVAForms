@@ -9,6 +9,7 @@ import CSDL.Database;
 import CSDL.tbDanhmuc;
 import java.awt.Image;
 import java.awt.TextField;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
@@ -38,14 +39,28 @@ import net.proteanit.sql.DbUtils;
 public class clsTienich {
     public static void ComboBoxSach(JComboBox cbb, int i)
     {
-       tbDanhmuc dm = new tbDanhmuc();
-       Vector<clsDanhmuc> ds = dm.Layds_Cate();
-        
-        //tạo mảng chứa
-        DefaultComboBoxModel cdm = new DefaultComboBoxModel(ds);
-        //chèn các lớp học vào cbbLophoc
-        cbb.setModel(cdm);
-        cdm.insertElementAt("Chọn danh mục", 0);
+        cbb.removeAllItems();
+        cbb.insertItemAt("Chon danh muc",0);
+
+       Vector<clsDanhmuc> ds = new Vector<clsDanhmuc>();
+      
+        Connection cnn = Database.KetnoiCSDL();
+        if (cnn!=null) {
+            String sql = "SELECT * FROM danh_muc ";
+                Statement stm;
+            try {
+                stm = cnn.createStatement();
+                ResultSet rs = stm.executeQuery(sql);
+                while (rs.next()) {
+                    cbb.addItem(rs.getString("Ten_Danh__Muc"));
+                   
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(tbDanhmuc.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Lỗi kết nối!!");
+            }
+            
+        }
         cbb.setSelectedIndex(i);
     }
     
@@ -99,7 +114,16 @@ public class clsTienich {
        txtAnh.setText(f.toString());
         return f;
     }
-
+    
+    public static void SaveAnh(File file){
+        BufferedImage image;
+        try {
+              image = ImageIO.read(file);
+             ImageIO.write(image, "jpg",new File("C:\\Users\\admin\\Documents\\NetBeansProjects\\BigLesson\\src\\Image" + file.getName()));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Sorry!");
+            }  
+    }
    
     
 }

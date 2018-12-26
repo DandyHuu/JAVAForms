@@ -158,10 +158,10 @@ public class tbUsers {
         }
     }
     
-    public boolean DeleteUsers(String ms) {
+    public boolean DeleteUsers(int ms) {
         try {
             ps = Database.KetnoiCSDL().prepareStatement("DELETE FROM QUAN_TRI WHERE Ma_admin = ?");
-            ps.setString(1, ms);
+            ps.setInt(1, ms);
             return ps.executeUpdate() >0;
         } catch(Exception e) {
             return false;

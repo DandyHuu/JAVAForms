@@ -13,16 +13,21 @@ import java.sql.Date;
  */
 public class clsPhieuMuon {
     public int maMuon;
-    public String maKhach;
-    public String maSach;
+    public int maKhach;
+    public int maSach;
     public Date ngayMuon;
     public Date hanTra;
+    
+    public String tenSach;
+    public int gia;
+    public String tenKhachhang;
+    public int phone;
     
     public clsPhieuMuon() {
         
     }
     
-    public clsPhieuMuon(int maMuon, String maKhach, String maSach, Date ngayMuon, Date hanTra) {
+    public clsPhieuMuon(int maMuon, int maKhach, int maSach, Date ngayMuon, Date hanTra) {
         this.maMuon = maMuon;
         this.maKhach = maKhach;
         this.maSach = maSach;
@@ -37,17 +42,17 @@ public class clsPhieuMuon {
         this.maMuon = mm;
     }
     
-    public String getMaKhach() {
+    public int getMaKhach() {
         return maKhach;
     }
-    public void setMaKhach(String mm) {
+    public void setMaKhach(int mm) {
         this.maKhach = mm;
     }
     
-    public String getSach() {
+    public int getSach() {
         return maSach;
     }
-    public void setMaSach(String mm) {
+    public void setMaSach(int mm) {
         this.maSach = mm;
     }
     
@@ -64,5 +69,32 @@ public class clsPhieuMuon {
         this.hanTra = ht;
     }
     
+//    ---------------
+     public int getTien() {
+        return gia;
+    }
+    public void setTien(int mm) {
+        this.gia = mm;
+    }
     
+     public int getPhone() {
+        return phone;
+    }
+    public void setPhone(int mm) {
+        this.phone = mm;
+    }
+    
+     public String getTensach() {
+        return tenSach;
+    }
+    public void setTensach(String mm) {
+        this.tenSach = mm;
+    }
+    
+    public String getTenKhach() {
+        return tenKhachhang;
+    }
+    public void setTenKhach(String mm) {
+        this.tenKhachhang = mm;
+    }
 }
