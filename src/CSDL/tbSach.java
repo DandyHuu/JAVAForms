@@ -67,7 +67,7 @@ public class tbSach {
                     sql = "SELECT * FROM SACH WHERE Ten_Sach LIKE '%"+name+"%'";
                 }
                 else{
-                    sql += "AND Ten_Sach LIKE '%"+name+"%'";
+                    sql += " AND Ten_Sach LIKE '%"+name+"%'";
                 }
             }
             if(!author.equals("")){
@@ -75,7 +75,7 @@ public class tbSach {
                     sql = "SELECT * FROM SACH WHERE Ten_Tac_gia LIKE '%"+author+"%'";
                 }
                 else{
-                    sql += "AND Ten_Tac_gia LIKE '%"+author+"%'";
+                    sql += " AND Ten_Tac_gia LIKE '%"+author+"%'";
                 }
             }
             if(cate_id > 0){
@@ -83,7 +83,7 @@ public class tbSach {
                     sql = "SELECT * FROM SACH WHERE id_cate = "+cate_id;
                 }
                 else{
-                    sql += "AND id_cate = "+cate_id;
+                    sql += " AND id_cate = "+cate_id;
                 }
             }
             if (price2>0) {
@@ -92,7 +92,7 @@ public class tbSach {
                         sql = "SELECT * FROM SACH WHERE Gia_tien < "+ price2;
                     }
                     else{
-                        sql += "AND Gia_tien < "+ price2;
+                        sql += " AND Gia_tien < "+ price2;
                     }
                 }
                 if(price1 == 100001 && price2 == 200000){
@@ -100,7 +100,7 @@ public class tbSach {
                         sql = "SELECT * FROM SACH WHERE Gia_tien BETWEEN "+ price1+" AND "+ price2;
                     }
                     else{
-                        sql += "AND Gia_tien BETWEEN "+ price1+" AND "+ price2;
+                        sql += " AND Gia_tien BETWEEN "+ price1+" AND "+ price2;
                     }
                 }
                  if(price2 > 200000){
@@ -108,7 +108,7 @@ public class tbSach {
                         sql = "SELECT * FROM SACH WHERE Gia_tien > "+ price2;
                     }
                     else{
-                        sql += "AND Gia_tien > "+ price2;
+                        sql += " AND Gia_tien > "+ price2;
                     }
                 }
             }

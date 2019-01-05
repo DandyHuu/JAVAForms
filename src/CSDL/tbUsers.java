@@ -111,7 +111,7 @@ public class tbUsers {
         return ds;
     }
     
-         public static void InsertUsers(clsUsers u) {
+         public static boolean InsertUsers(clsUsers u) {
         String sql = "insert into quan_tri values(?,?,?,?,?,?,?)";
         try {
             ps = Database.KetnoiCSDL().prepareStatement(sql);
@@ -119,14 +119,15 @@ public class tbUsers {
             ps.setString(2, u.getTennguoidung());
             ps.setString(3, u.getuserName());
             ps.setString(4, u.getpass());
-            ps.setInt(5, u.getrole());
-             ps.setString(6, u.getAvatar());
-              ps.setString(7, u.getPhone());
+             ps.setString(5, u.getAvatar());
+              ps.setString(6, u.getPhone());
+             ps.setInt(7, u.getrole());
+
            
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Đã thêm sách thành công!" );
+            return true;
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Có lỗi xảy ra!!" );
+           return false;
         }
     }
     

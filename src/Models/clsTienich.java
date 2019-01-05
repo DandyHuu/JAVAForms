@@ -12,11 +12,14 @@ import java.awt.TextField;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,6 +95,7 @@ public class clsTienich {
     
     
     public static void ShowHinhAnh(File file, JLabel label){
+        
         try {
             Image img = ImageIO.read(file);
             Image img2 = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
@@ -111,18 +115,47 @@ public class clsTienich {
         openFile.addChoosableFileFilter(fft);
        openFile.showOpenDialog(openFile);
        File f = openFile.getSelectedFile();
-       txtAnh.setText(f.toString());
+        if (f != null) {
+            String strTenNgaunhien = clsTienich.randomString(20);
+            String strDuoitep = clsTienich.TypeFile(f.getName());
+            String strTenTepAnh = strTenNgaunhien + "." + strDuoitep;
+            txtAnh.setText(strTenTepAnh);
+        }
+      
         return f;
     }
+    public static String randomString(int len) {
+        String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random rnd = new Random();
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            sb.append(AB.charAt(rnd.nextInt(AB.length())));
+        }
+        return sb.toString();
+    }
+    public static String TypeFile(String fileName) {
+        String extension = "";
+        int i = fileName.lastIndexOf('.');
+        if (i >= 0) {
+            extension = fileName.substring(i + 1);
+        }
+        return extension;
+    }
     
-    public static void SaveAnh(File file){
-        BufferedImage image;
-        try {
-              image = ImageIO.read(file);
-             ImageIO.write(image, "jpg",new File("C:\\Users\\admin\\Documents\\NetBeansProjects\\BigLesson\\src\\Image" + file.getName()));
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Sorry!");
-            }  
+    public static String SaveAnh(File ImageFile , String tenAnh){
+       String filecopy = "";
+       if (ImageFile != null) {
+                //String img = ImageFile.getName();
+                 filecopy = "src/Image/" + tenAnh;
+                File fc = new File(filecopy);
+           try {
+               Files.copy(ImageFile.toPath(), fc.toPath(),StandardCopyOption.REPLACE_EXISTING);
+           } catch (IOException ex) {
+               Logger.getLogger(clsTienich.class.getName()).log(Level.SEVERE, null, ex);
+           }
+                    
+       }
+       return filecopy;
     }
    
     

@@ -39,7 +39,7 @@ public class tbKhachHang {
 //                kh.setBirth(rs.getDate("Ngay_sinh"));
                 kh.setName(rs.getString("Ten_Khach_hang"));
                 kh.setDiaChi(rs.getString("Dia_chi"));
-                kh.setPhone(rs.getInt("Phone"));
+                kh.setPhone(rs.getString("Phone"));
                 kh.setTienCoc(rs.getInt("Tien_dat_coc"));
             }
         }
@@ -65,7 +65,7 @@ public class tbKhachHang {
                     sv.setMaKH(rs.getInt("Ma_Khach_hang"));
                     sv.setName(rs.getString("Ten_Khach_hang"));
                     sv.setDiaChi(rs.getString("Dia_Chi"));
-                    sv.setPhone(rs.getInt("Phone"));
+                    sv.setPhone(rs.getString("Phone"));
                     sv.setTienCoc(rs.getInt("Tien_dat_coc"));
                     k.add(sv);
                 }
@@ -90,7 +90,7 @@ public class tbKhachHang {
                     sv.setMaKH(rs.getInt("Ma_Khach_hang"));
                     sv.setName(rs.getString("Ten_Khach_hang"));
                     sv.setDiaChi(rs.getString("Dia_Chi"));
-                    sv.setPhone(rs.getInt("Phone"));
+                    sv.setPhone(rs.getString("Phone"));
                     sv.setTienCoc(rs.getInt("Tien_dat_coc"));
                     k.add(sv);
                 }
@@ -119,7 +119,7 @@ public class tbKhachHang {
             ps.setInt(1, kh.getMaKH());
             ps.setString(2, kh.getName());
             ps.setString(3, kh.getDiaChi());
-            ps.setInt(4, kh.getPhone());
+            ps.setString(4, kh.getPhone());
             ps.setInt(5, kh.getTienCoc());
             ps.execute();
             JOptionPane.showMessageDialog(null, "Đã thêm khách hàng thành công!");
@@ -137,7 +137,7 @@ public class tbKhachHang {
             ps.setString(1, kh.getName());
 //            ps.setDate(3, kh.getBirth());
             ps.setString(2, kh.getDiaChi());
-            ps.setInt(3, kh.getPhone());
+            ps.setString(3, kh.getPhone());
             ps.setInt(4, kh.getTienCoc());
             return ps.executeUpdate() >0;
         } catch (Exception e) {

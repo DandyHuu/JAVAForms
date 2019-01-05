@@ -16,14 +16,14 @@ public class clsKhachHang {
     private int maKhachHang;
     private String name;
     private String diaChi;
-    private int phone;
+    private String phone;
     private int Tien_coc;
     
     public clsKhachHang() {
         
     }
     
-    public clsKhachHang(int maKH, String name, String diaChi, int phone, int tien) {
+    public clsKhachHang(int maKH, String name, String diaChi, String phone, int tien) {
         this.maKhachHang = maKH;
 //        this.password = password;
         this.name = name;
@@ -67,10 +67,10 @@ public class clsKhachHang {
         this.diaChi = diachi;
     }
     
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
     public int getTienCoc() {

@@ -54,6 +54,11 @@ public class frmMAIN extends javax.swing.JFrame {
     public frmMAIN() {
         initComponents();
         tabHethongMouseClicked(evt);
+        if (_Role >0) {
+            btnAddBook.disable();
+            btnEditBook.disable();
+            btnRemoveBook.disable();
+        }
     }
     
     public void ShowtapKhachhang(){
@@ -136,6 +141,7 @@ public class frmMAIN extends javax.swing.JFrame {
         btnSavekhachhang = new javax.swing.JButton();
         btnEditkhachhang = new javax.swing.JButton();
         btnRemovekhachhang = new javax.swing.JButton();
+        jLabel45 = new javax.swing.JLabel();
         panelTimkiem = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         txtTukhoaTensach = new javax.swing.JTextField();
@@ -233,6 +239,7 @@ public class frmMAIN extends javax.swing.JFrame {
         tabTimkiem = new javax.swing.JMenu();
         tabKhachhang = new javax.swing.JMenu();
         tabNguoidung = new javax.swing.JMenu();
+        tabLogout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Thư viên AZ");
@@ -279,6 +286,7 @@ public class frmMAIN extends javax.swing.JFrame {
                 "Mã sách", "Tên sách", "Danh mục", "Tên tác giả", "Nhà xuất bản", "Giá", "Số lượng"
             }
         ));
+        tableSach.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tableSach.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableSachMouseClicked(evt);
@@ -288,6 +296,7 @@ public class frmMAIN extends javax.swing.JFrame {
 
         jLabel20.setText("Tên sách");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Danh sách các đầu sách");
 
@@ -369,6 +378,7 @@ public class frmMAIN extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        btnAddBook.setForeground(new java.awt.Color(0, 102, 255));
         btnAddBook.setText("Thêm");
         btnAddBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -376,6 +386,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnEditBook.setForeground(new java.awt.Color(255, 204, 0));
         btnEditBook.setText("Sửa");
         btnEditBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -383,6 +394,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnRemoveBook.setForeground(new java.awt.Color(255, 51, 0));
         btnRemoveBook.setText("Xóa");
         btnRemoveBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -421,10 +433,10 @@ public class frmMAIN extends javax.swing.JFrame {
                     .addComponent(btnTimkiem))
                 .addGap(18, 18, 18)
                 .addGroup(panelHethongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRemoveBook)
-                    .addComponent(btnEditBook)
-                    .addComponent(btnAddBook))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addComponent(btnRemoveBook, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditBook, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddBook, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -478,6 +490,7 @@ public class frmMAIN extends javax.swing.JFrame {
 
         jLabel33.setText("Tên người dùng");
 
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel27.setText("Danh sách người dùng");
 
@@ -487,6 +500,7 @@ public class frmMAIN extends javax.swing.JFrame {
         btngroupRoles.add(rdMember);
         rdMember.setText("Khách");
 
+        btnThongtincanhan.setForeground(new java.awt.Color(0, 102, 255));
         btnThongtincanhan.setText("Thông tin cá nhân");
         btnThongtincanhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -494,6 +508,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnRemoveUser.setForeground(new java.awt.Color(255, 51, 0));
         btnRemoveUser.setText("Xóa");
         btnRemoveUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -563,9 +578,9 @@ public class frmMAIN extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29)
                     .addComponent(txtTendangnhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRemoveUser))
-                .addGap(18, 18, 18)
-                .addComponent(btnThongtincanhan)
+                    .addComponent(btnRemoveUser, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnThongtincanhan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel27)
                 .addContainerGap(411, Short.MAX_VALUE))
@@ -624,6 +639,8 @@ public class frmMAIN extends javax.swing.JFrame {
 
         panelMAIN.add(panelAdmin, "card9");
 
+        btLook.setForeground(new java.awt.Color(0, 153, 0));
+        btLook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/010-search.png"))); // NOI18N
         btLook.setText("Tìm kiếm");
         btLook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -671,6 +688,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnSavekhachhang.setForeground(new java.awt.Color(0, 102, 255));
         btnSavekhachhang.setText("Thêm mới");
         btnSavekhachhang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -678,6 +696,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnEditkhachhang.setForeground(new java.awt.Color(255, 153, 0));
         btnEditkhachhang.setText("Sửa đổi");
         btnEditkhachhang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -685,6 +704,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnRemovekhachhang.setForeground(new java.awt.Color(255, 0, 0));
         btnRemovekhachhang.setText("Xóa");
         btnRemovekhachhang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -692,18 +712,19 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        jLabel45.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel45.setText("Dánh sách khách hàng");
+
         javax.swing.GroupLayout panelKhachhang1Layout = new javax.swing.GroupLayout(panelKhachhang1);
         panelKhachhang1.setLayout(panelKhachhang1Layout);
         panelKhachhang1Layout.setHorizontalGroup(
             panelKhachhang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelKhachhang1Layout.createSequentialGroup()
+            .addGroup(panelKhachhang1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelKhachhang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1154, Short.MAX_VALUE)
+                .addGroup(panelKhachhang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1154, Short.MAX_VALUE)
                     .addGroup(panelKhachhang1Layout.createSequentialGroup()
-                        .addComponent(txtLook, javax.swing.GroupLayout.PREFERRED_SIZE, 1029, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelKhachhang1Layout.createSequentialGroup()
                         .addGroup(panelKhachhang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelKhachhang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -717,9 +738,7 @@ public class frmMAIN extends javax.swing.JFrame {
                                     .addComponent(txtMaKhach))
                                 .addGap(269, 269, 269)
                                 .addGroup(panelKhachhang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panelKhachhang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btLook)
-                                        .addComponent(btLogout))
+                                    .addComponent(btLook)
                                     .addGroup(panelKhachhang1Layout.createSequentialGroup()
                                         .addGroup(panelKhachhang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -730,15 +749,22 @@ public class frmMAIN extends javax.swing.JFrame {
                                             .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(6, 6, 6))))
                             .addGroup(panelKhachhang1Layout.createSequentialGroup()
+                                .addComponent(txtTienCoc, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panelKhachhang1Layout.createSequentialGroup()
                                 .addComponent(btnSavekhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(273, 273, 273)
+                                .addGap(272, 272, 272)
                                 .addComponent(btnEditkhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnRemovekhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(89, 89, 89))
-                            .addGroup(panelKhachhang1Layout.createSequentialGroup()
-                                .addComponent(txtTienCoc, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(91, 91, 91))))
+                    .addGroup(panelKhachhang1Layout.createSequentialGroup()
+                        .addComponent(txtLook, javax.swing.GroupLayout.PREFERRED_SIZE, 1029, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelKhachhang1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btLogout)))
                 .addContainerGap())
         );
         panelKhachhang1Layout.setVerticalGroup(
@@ -766,12 +792,14 @@ public class frmMAIN extends javax.swing.JFrame {
                 .addGroup(panelKhachhang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel48)
                     .addComponent(txtTienCoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addGroup(panelKhachhang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSavekhachhang)
-                    .addComponent(btnEditkhachhang)
-                    .addComponent(btnRemovekhachhang))
-                .addGap(55, 55, 55)
+                    .addComponent(btnEditkhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSavekhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRemovekhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jLabel45)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -874,6 +902,7 @@ public class frmMAIN extends javax.swing.JFrame {
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)))
         );
 
+        btnTimkiemnangcao.setForeground(new java.awt.Color(0, 102, 255));
         btnTimkiemnangcao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/010-search.png"))); // NOI18N
         btnTimkiemnangcao.setText("Tìm kiếm");
         btnTimkiemnangcao.addActionListener(new java.awt.event.ActionListener() {
@@ -882,6 +911,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        jButton10.setForeground(new java.awt.Color(51, 204, 0));
         jButton10.setText("Cập nhập thông tin");
 
         btngroupGia.add(rb_0_100);
@@ -986,6 +1016,7 @@ public class frmMAIN extends javax.swing.JFrame {
         labelPass.setBackground(new java.awt.Color(153, 255, 204));
         labelPass.setText("***************");
 
+        btnRePassUser.setForeground(new java.awt.Color(0, 153, 51));
         btnRePassUser.setText("Đổi mật khẩu");
         btnRePassUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1000,6 +1031,7 @@ public class frmMAIN extends javax.swing.JFrame {
         labelAvatar.setText("avatar");
         labelAvatar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
 
+        btnupload.setForeground(new java.awt.Color(255, 153, 0));
         btnupload.setText("Upload");
         btnupload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1014,6 +1046,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnSaveUpdateUser.setForeground(new java.awt.Color(0, 51, 255));
         btnSaveUpdateUser.setText("Lưu thay đổi");
         btnSaveUpdateUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1054,8 +1087,8 @@ public class frmMAIN extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(448, 448, 448)
-                .addComponent(btnSaveUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(490, 490, 490)
+                .addComponent(btnSaveUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -1083,13 +1116,13 @@ public class frmMAIN extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(labelPass)
-                    .addComponent(btnRePassUser))
+                    .addComponent(btnRePassUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtPhoneUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
-                .addComponent(btnSaveUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addComponent(btnSaveUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
         );
 
@@ -1146,6 +1179,7 @@ public class frmMAIN extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        btnNewCate.setForeground(new java.awt.Color(0, 102, 255));
         btnNewCate.setText("Thêm danh mục");
         btnNewCate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1153,6 +1187,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnEditCate.setForeground(new java.awt.Color(255, 153, 0));
         btnEditCate.setText("Cập nhật");
         btnEditCate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1160,6 +1195,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnRemoveCate.setForeground(new java.awt.Color(255, 0, 51));
         btnRemoveCate.setText("Xóa");
         btnRemoveCate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1275,6 +1311,7 @@ public class frmMAIN extends javax.swing.JFrame {
 
         jLabel41.setText("Thông tin NXB:");
 
+        btnThemNXB.setForeground(new java.awt.Color(0, 102, 255));
         btnThemNXB.setText("Thêm nhà phát hành");
         btnThemNXB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1282,6 +1319,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnSuaNXB.setForeground(new java.awt.Color(255, 102, 0));
         btnSuaNXB.setText("Cập nhật");
         btnSuaNXB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1289,6 +1327,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnXoaNXB.setForeground(new java.awt.Color(255, 0, 0));
         btnXoaNXB.setText("Xóa");
         btnXoaNXB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1403,6 +1442,8 @@ public class frmMAIN extends javax.swing.JFrame {
 
         panelMAIN.add(panelNhaphathanh, "card4");
 
+        jButton4.setForeground(new java.awt.Color(51, 204, 0));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/010-search.png"))); // NOI18N
         jButton4.setText("Tìm kiếm");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1410,6 +1451,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnChothuesach.setForeground(new java.awt.Color(0, 102, 255));
         btnChothuesach.setText("Cho thuê");
         btnChothuesach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1417,6 +1459,7 @@ public class frmMAIN extends javax.swing.JFrame {
             }
         });
 
+        btnXoaThue.setForeground(new java.awt.Color(255, 0, 0));
         btnXoaThue.setText("Xóa mục");
         btnXoaThue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1439,6 +1482,7 @@ public class frmMAIN extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tablePhieumuon);
 
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Danh sách cho thuê");
 
@@ -1653,6 +1697,20 @@ public class frmMAIN extends javax.swing.JFrame {
         });
         jMenuBar1.add(tabNguoidung);
 
+        tabLogout.setBackground(new java.awt.Color(0, 102, 255));
+        tabLogout.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
+        tabLogout.setForeground(new java.awt.Color(204, 51, 0));
+        tabLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/cross.png"))); // NOI18N
+        tabLogout.setText("Đăng xuất");
+        tabLogout.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        tabLogout.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        tabLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabLogoutMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(tabLogout);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1835,7 +1893,7 @@ public class frmMAIN extends javax.swing.JFrame {
                txtPhoneUser.setText(_Phone);
                txtDuongdan.setText(_Avatar);
                clsTienich tienIch = new clsTienich();
-               File f = new File(_Avatar);
+               File f = new File("src/Image/"+_Avatar);
                tienIch.ShowHinhAnh(f, labelAvatar);
              
          }
@@ -1923,9 +1981,11 @@ public class frmMAIN extends javax.swing.JFrame {
         String tukhoaTensach = txtTukhoaTensach.getText();
         String tukhoaTentacgia = txtTukhoaTentacgia.getText();
         int id_danhmuc = 0;
-        if (cbbDanhmuc.getSelectedIndex()>0) {
-            clsDanhmuc dm = (clsDanhmuc)cbbDanhmuc.getSelectedItem();
-            id_danhmuc = dm.getID();
+       
+         if (cbxDanhmuc.getSelectedIndex() >0) {
+             String name = cbxDanhmuc.getSelectedItem().toString();
+             tbDanhmuc dm = new tbDanhmuc();
+           id_danhmuc = dm.Layds_IdCate(name);
         }
         int gia1 = 0;
         int gia2 = 0;
@@ -1952,7 +2012,7 @@ public class frmMAIN extends javax.swing.JFrame {
                 DefaultTableModel dtm = (DefaultTableModel)tableSach1.getModel();
                 dtm.setRowCount(0);//xóa các dòng cũ nếu có
                 ds.forEach((book) -> {
-                    dtm.addRow(new Object[]{book.getMaSach(),book.getTenSach(), book.getTenTacGia(), book.getNhaXB() , book.getGiaTien(), book.getSoLuong()});
+                    dtm.addRow(new Object[]{book.getMaSach(),book.getTenSach(),book.getIdcate(), book.getTenTacGia(), book.getNhaXB() , book.getGiaTien(), book.getSoLuong()});
                 });
             }
             else{
@@ -1997,6 +2057,12 @@ public class frmMAIN extends javax.swing.JFrame {
              tbSach sach = new tbSach();
              sach.InsertSach(newItem);
              ShowDataSach();
+             cbxDanhmuc.setSelectedIndex(0);
+             txtTenSach.setText("");
+             txtNhaXb.setText("");
+             txtTenTacGia.setText("");
+             txtGia.setText("");
+             txtSoLuong.setText("");
          }
     }//GEN-LAST:event_btnAddBookActionPerformed
 
@@ -2168,8 +2234,11 @@ public class frmMAIN extends javax.swing.JFrame {
                  txtPhoneUser.setText(_Phone);
                  txtDuongdan.setText(_Avatar);
                  clsTienich tien_ich = new clsTienich();
-                 File f = new File(_Avatar);
-                 tien_ich.ShowHinhAnh(f, labelAvatar);
+                 if (_Avatar != null) {
+                      File f = new File(_Avatar);
+                        tien_ich.ShowHinhAnh(f, labelAvatar);
+                 }
+                 
     }//GEN-LAST:event_btnThongtincanhanActionPerformed
 
     private void txtDuongdanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDuongdanActionPerformed
@@ -2183,9 +2252,11 @@ public class frmMAIN extends javax.swing.JFrame {
         
         tien_ich.ShowHinhAnh(f, labelAvatar);
         
-        tien_ich.SaveAnh(f);
-        txtDuongdan.setText(f.toString());
-
+        String tenAnh = txtDuongdan.getText();
+        String Duongdan = tien_ich.SaveAnh(f, tenAnh);
+        tbUsers u = new tbUsers();
+       clsUsers oldItem= new clsUsers(_Ma_admin, _Ten_dang_nhap, _Ten_nguoi_dung, _Password,Duongdan , _Phone, _Role);
+       boolean kq = u.UpdateUsers(oldItem);
     }//GEN-LAST:event_btnuploadActionPerformed
 
     private void btnSaveUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveUpdateUserActionPerformed
@@ -2197,7 +2268,7 @@ public class frmMAIN extends javax.swing.JFrame {
        String phone = txtPhoneUser.getText();
        
        tbUsers u = new tbUsers();
-       clsUsers oldItem= new clsUsers(_Ma_admin, name, _Ten_nguoi_dung, pass, duongdan, phone, _Role);
+       clsUsers oldItem= new clsUsers(_Ma_admin, name,_Ten_nguoi_dung, pass, duongdan, phone, _Role);
        boolean kq = u.UpdateUsers(oldItem);
         if (kq == true) {
             JOptionPane.showMessageDialog(null, "Cập nhật thành công!!");
@@ -2411,9 +2482,9 @@ public class frmMAIN extends javax.swing.JFrame {
         // TODO add your handling code here:
          String tenkhach = txtTenKhach.getText();
          String dc = txtDiaChi.getText();
-         int phone = Integer.parseInt(txtPhone.getText());
+         String phone = txtPhone.getText();
          int tien = Integer.parseInt(txtTienCoc.getText());
-         if (tenkhach.equals("") || dc.equals("") || phone == 0) {
+         if (tenkhach.equals("") || dc.equals("") || phone.equals("")) {
             JOptionPane.showMessageDialog(null, "Bạn chưa nhập xong dữ liệu !");
          }
          else{
@@ -2434,9 +2505,9 @@ public class frmMAIN extends javax.swing.JFrame {
         int makhach = Integer.parseInt(txtMaKhach.getText());
          String tenkhach = txtTenKhach.getText();
          String dc = txtDiaChi.getText();
-         int phone = Integer.parseInt(txtPhone.getText());
+         String phone = txtPhone.getText();
          int tien = Integer.parseInt(txtTienCoc.getText());
-         if ( tenkhach.equals("") || dc.equals("")) {
+         if ( tenkhach.equals("") || dc.equals("") || phone.equals("")) {
             JOptionPane.showMessageDialog(null, "B?n chua nh?p xong d? li?u !");
          }
          else{
@@ -2508,6 +2579,14 @@ public class frmMAIN extends javax.swing.JFrame {
             ShowPhieuMuon();
         }
     }//GEN-LAST:event_btnXoaThueActionPerformed
+
+    private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        
+        frmLogin csLogin = new frmLogin();
+        csLogin.setVisible(true);
+    }//GEN-LAST:event_tabLogoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2614,6 +2693,7 @@ public class frmMAIN extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
@@ -2664,6 +2744,7 @@ public class frmMAIN extends javax.swing.JFrame {
     private javax.swing.JMenu tabCongcu;
     private javax.swing.JMenu tabHethong;
     private javax.swing.JMenu tabKhachhang;
+    private javax.swing.JMenu tabLogout;
     private javax.swing.JMenu tabNguoidung;
     private javax.swing.JMenu tabNhaphathanh;
     private javax.swing.JMenu tabTimkiem;

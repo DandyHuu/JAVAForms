@@ -76,6 +76,31 @@ public class tbDanhmuc {
         }
         return ds;
     }
+    
+    public String Layds_Cate_withID(int id){
+        String ds = "";
+        Connection cnn = Database.KetnoiCSDL();
+        if (cnn!=null) {
+            String sql = "SELECT * FROM danh_muc WHERE id = "+id;
+           
+                
+                Statement stm;
+            try {
+                stm = cnn.createStatement();
+                ResultSet rs = stm.executeQuery(sql);
+                while (rs.next()) {
+                    
+                   ds= rs.getString("Ten_Danh__Muc");
+                    
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(tbDanhmuc.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Lỗi kết nối!!");
+            }
+            
+        }
+        return ds;
+    }
     public int Layds_IdCate(String name){
         int id =0;
         Connection cnn = Database.KetnoiCSDL();
